@@ -7,7 +7,7 @@
 
 service "monit" do
   provider Chef::Provider::Service::Upstart
-  suports :restart => true, :reload => true
+  supports :restart => true, :reload => true
   action [:enable, :start ]
   only_if File.exists?("/usr/sbin/monit")
 end
