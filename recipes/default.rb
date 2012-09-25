@@ -5,6 +5,11 @@
 # Copyright 2012, Higanworks LLC.
 #
 
+cookbook_file "/etc/init/monit.conf" do
+  source "monit_upstart"
+  notifies :restart, "service[monit]"
+end
+
 service "monit" do
   provider Chef::Provider::Service::Upstart
   supports :restart => true, :reload => true
@@ -21,10 +26,6 @@ end
   end
 end
 
-cookbook_file "/etc/init/monit.conf" do
-  source "monit_upstart"
-  notifies :restart, "service[monit]"
-end
 
 template "/etc/monitrc" do
   source "monitrc"
