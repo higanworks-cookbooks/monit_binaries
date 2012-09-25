@@ -5,6 +5,12 @@
 # Copyright 2012, Higanworks LLC.
 #
 
+service "monit" do
+  provider Chef::Provider::Service::Upstart
+  suports :restart => true, :reload => ture
+  action [:enable, :start ]
+  only_if File.exists?("/usr/sbin/monit")
+end
 
 %w{/etc/monit /etc/monit/conf.enable /etc/monit/conf.avail /usr/local/src/monit}.each do |w|
   directory w do
@@ -13,6 +19,16 @@
     group "root"
     mode  "0700"
   end
+end
+
+cookbook_file "/etc/init/monit.conf" do
+  source "monit_upstart"
+  notifies :restart, "service[monit]"
+end
+
+template "/etc/monitrc" do
+  source "monitrc"
+  notifies :restart, "service[monit]"
 end
 
 
@@ -33,4 +49,5 @@ script "install_from_source" do
 
   only_if "test ! -f #{Chef::Config[:file_cache_path]}/monit/#{node[:monit][:binaries]}.tar.gz"
   Chef::Log.info("End: install monit-#{node[:monit][:version]}")
+  notifies :restart, "service[monit]"
 end

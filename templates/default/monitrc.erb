@@ -1,0 +1,11 @@
+set daemon 120
+    with start delay 60
+set init
+set logfile syslog facility log_daemon
+set eventqueue basedir /var/monit/ slots 1000
+set httpd port 2812
+    use address 0.0.0.0
+    allow localhost
+set mailserver localhost
+
+include /etc/monit/conf.enable/*
