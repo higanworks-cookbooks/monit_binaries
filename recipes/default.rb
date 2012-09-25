@@ -13,8 +13,9 @@ end
 service "monit" do
   provider Chef::Provider::Service::Upstart
   supports :restart => true, :reload => true
-  action [:enable, :start ]
-  only_if File.exists?("/usr/sbin/monit")
+#  action [:enable, :start ]
+  action :nothing
+#  only_if File.exists?("/usr/sbin/monit")
 end
 
 %w{/etc/monit /etc/monit/conf.enable /etc/monit/conf.avail /usr/local/src/monit}.each do |w|
