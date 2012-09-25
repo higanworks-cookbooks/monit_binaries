@@ -29,7 +29,7 @@ end
 
 
 template "/etc/monitrc" do
-  source "monitrc"
+  source "monitrc.erb"
   notifies :restart, "service[monit]"
 end
 
