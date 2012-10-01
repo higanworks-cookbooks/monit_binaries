@@ -11,13 +11,13 @@ define :monit_site, :enable => true do
     execute "monitensite #{params[:name]}" do
       command "ln -s /etc/monit/conf.avail/#{params[:name]}.conf /etc/monit/conf.enable/#{params[:name]}.conf"
       notifies :reload, resources(:service => "monit")
-      not_if do ::File.symlink?("/etc/monit/conf.enabled/#{params[:name]}.conf") end
+      not_if do ::File.symlink?("/etc/monit/conf.enable/#{params[:name]}.conf") end
     end
-  else
-    execute "nxdissite #{params[:name]}" do
+  elsif params[:disable]
+    execute "monitdisite #{params[:name]}" do
       command "rm /etc/monit/conf.enable/#{params[:name]}.conf"
       notifies :reload, resources(:service => "monit")
-      only_if do ::File.symlink?("/etc/monit/conf.enabled/#{params[:name]}.conf") end
+      only_if do ::File.symlink?("/etc/monit/conf.enable/#{params[:name]}.conf") end
     end
   end
 end
