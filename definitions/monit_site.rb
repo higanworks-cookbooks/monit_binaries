@@ -13,7 +13,7 @@ define :monit_site, :enable => true do
       notifies :reload, resources(:service => "monit")
       not_if do ::File.symlink?("/etc/monit/conf.enable/#{params[:name]}.conf") end
     end
-  elsif params[:disable]
+  else
     execute "monitdisite #{params[:name]}" do
       command "rm /etc/monit/conf.enable/#{params[:name]}.conf"
       notifies :reload, resources(:service => "monit")
