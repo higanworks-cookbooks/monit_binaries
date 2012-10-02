@@ -61,7 +61,7 @@ end
 
 %w(monitensite monitdisite).each do |command|
   template "/usr/local/sbin/#{command}" do
-    source command
+    source "#{command}.erb"
     mode 0744
     owner "root"
     group "root"
