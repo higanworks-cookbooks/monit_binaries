@@ -10,6 +10,7 @@ if [ -z $1 ]; then
         sed -e "s,$SYSCONFDIR/conf.enable/,,g" | xargs echo
         echo -n "Setting name? (without .conf)"
         read SITENAME
+        SITENAME=$SITENAME.conf
 else
         SITENAME=$1.conf
 fi
