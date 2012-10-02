@@ -11,13 +11,13 @@ define :monit_setting, :enable => true do
     execute "monitensite #{params[:name]}" do
       command "/usr/local/sbin/monitensite #{params[:name]}"
       notifies :reload, resources(:service => "monit")
-      not_if do ::File.symlink?("#{node['monit']['dir']}/conf.enable/#{params[:name]}.conf") end
+      not_if do ::File.symlink?("#{node['monit']['dir']}/conf.enable/#{params[:name]}") end
     end
   else
     execute "monitdisite #{params[:name]}" do
       command "/usr/local/sbin/monitdisite #{params[:name]}"
       notifies :reload, resources(:service => "monit")
-      only_if do ::File.symlink?("#{node['monit']['dir']}/conf.enable/#{params[:name]}.conf") end
+      only_if do ::File.symlink?("#{node['monit']['dir']}/conf.enable/#{params[:name]}") end
     end
   end
 end

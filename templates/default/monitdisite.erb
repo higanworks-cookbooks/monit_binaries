@@ -8,11 +8,10 @@ if [ -z $1 ]; then
         echo -n "Your choices are: "
         ls $SYSCONFDIR/conf.enable/* | \
         sed -e "s,$SYSCONFDIR/conf.enable/,,g" | xargs echo
-        echo -n "Setting name? (without .conf)"
+        echo -n "Setting name?"
         read SITENAME
-        SITENAME=$SITENAME.conf
 else
-        SITENAME=$1.conf
+        SITENAME=$1
 fi
 
 if ! [ -e $SYSCONFDIR/conf.enable/$SITENAME -o \
