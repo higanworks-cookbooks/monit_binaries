@@ -17,6 +17,24 @@ Usage
 
 `recipe[monit]` to default install.
 
+### call from other recipe
+
+<pre><code>include_recipe "monit_binaries"
+
+----
+  put config from template to /etc/monit/conf.avail/
+----
+
+# enable
+monit_setting "myapp.conf"
+
+# disable
+monit_setting "myapp.conf" do
+  enable false
+end
+</code></pre>
+
+
 ### monitensite monitdisite
 
 These tools contorol monit setting like a2ensite,a2disite.
