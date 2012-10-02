@@ -6,7 +6,7 @@
 # Copyright 2011-2012, HiganWorks LLC
 #
 
-define :monit_setting do
+define :monit_setting, :enable => true do
   if params[:enable]
     execute "monitensite #{params[:name]}" do
       command "/usr/local/sbin/monitensite #{params[:name]}"
