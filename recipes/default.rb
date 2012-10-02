@@ -14,7 +14,7 @@ service "monit" do
   provider Chef::Provider::Service::Upstart
 end
 
-%w{/etc/monit /etc/monit/conf.enable /etc/monit/conf.avail /usr/local/src/monit}.each do |w|
+%w{/etc/monit /var/monit /etc/monit/conf.enable /etc/monit/conf.avail /usr/local/src/monit}.each do |w|
   directory w do
     action :create
     owner "root"
