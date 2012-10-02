@@ -49,3 +49,22 @@ script "install_from_source" do
   Chef::Log.info("End: install monit-#{node[:monit][:version]}")
   notifies :restart, "service[monit]"
 end
+
+
+# monit setting controler
+
+directory "/usr/local/sbin" do
+  mode 00755
+  owner "root"
+  group "root"
+end
+
+%w(monitensite monitdisite).each do |command|
+  template "/usr/local/sbin/#{command}" do
+    source command
+    mode 0744
+    owner "root"
+    group "root"
+  end
+end
+
