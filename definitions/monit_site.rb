@@ -10,7 +10,7 @@ define :monit_setting, :enable => true do
   if params[:enable]
     execute "monitensite #{params[:name]}" do
       command "/usr/local/sbin/monitensite #{params[:name]}"
-      notifies :reload, resources(:service => "imonit")
+      notifies :reload, resources(:service => "monit")
       not_if do ::File.symlink?("#{node['monit']['dir']}/conf.enable/#{params[:name]}.conf") end
     end
   else
