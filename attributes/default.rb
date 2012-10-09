@@ -3,7 +3,7 @@ default['monit']['version'] = "5.5"
 case node['kernel']['machine']
   when "x86_64" then
     default['monit']['arc'] = "x64"
-  when "x86" then
+  when "i686" then
     default['monit']['arc'] = "x86"
 end
 
