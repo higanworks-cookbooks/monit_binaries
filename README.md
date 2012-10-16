@@ -1,6 +1,8 @@
 Description
 ===========
 
+[![Build Status](https://secure.travis-ci.org/higanworks-cookbooks/monit_binaries.png)](http://travis-ci.org/higanworks-cookbooks/monit_binaries)
+
 * Install monit from source.
 * Include setting tools monitensite, monitdisite.
 
