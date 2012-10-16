@@ -4,3 +4,4 @@ license          "MIT"
 description      "Installs/Configures monit_binaries"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.1.2"
+depends          "monit_binaries"
