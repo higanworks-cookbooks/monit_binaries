@@ -28,10 +28,10 @@ Usage
 ----
 
 # enable
-monit_setting "myapp.conf"
+monit_binaries "myapp.conf"
 
 # disable
-monit_setting "myapp.conf" do
+monit_binaries "myapp.conf" do
   enable false
 end
 </code></pre>
