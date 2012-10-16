@@ -10,9 +10,10 @@ cookbook_file "/etc/init/monit.conf" do
   notifies :restart, "service[monit]"
 end
 
-service "monit" do
-  provider Chef::Provider::Service::Upstart
-end
+include_recipe "monit_binaries::include"
+# service "monit" do
+#   provider Chef::Provider::Service::Upstart
+# end
 
 %w{/etc/monit /var/monit /etc/monit/conf.enable /etc/monit/conf.avail /usr/local/src/monit}.each do |w|
   directory w do
